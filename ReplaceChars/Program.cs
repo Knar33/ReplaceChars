@@ -45,29 +45,29 @@ namespace ReplaceChars
             return encodeString;
         }
         
-        public static string StripDiacritics(this string s)
+        public static string StripDiacritics(this string InputString)
         {
-            if (s == null) throw new ArgumentNullException("s");
+            if (InputString == null) throw new ArgumentNullException("s");
 
-            s = s.Normalize(NormalizationForm.FormD);
-            StringBuilder sb = new StringBuilder(s.Length);
+            InputString = InputString.Normalize(NormalizationForm.FormD);
+            StringBuilder outputString = new StringBuilder(InputString.Length);
 
-            for (int i = 0; i < s.Length; ++i)
+            for (int i = 0; i < InputString.Length; ++i)
             {
-                if (char.GetUnicodeCategory(s, i) != System.Globalization.UnicodeCategory.NonSpacingMark)
+                if (char.GetUnicodeCategory(InputString, i) != System.Globalization.UnicodeCategory.NonSpacingMark)
                 {
-                    if (!char.IsSurrogatePair(s, i))
+                    if (!char.IsSurrogatePair(InputString, i))
                     {
-                        sb.Append(s[i]);
+                        outputString.Append(InputString[i]);
                     }
                     else
                     {
-                        sb.Append(s, i, 2);
+                        outputString.Append(InputString, i, 2);
                         ++i;
                     }
                 }
             }
-            return sb.ToString().Normalize();
+            return outputString.ToString().Normalize();
         }
     }
 }
