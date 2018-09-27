@@ -44,8 +44,7 @@ namespace ReplaceChars
 
             return encodeString;
         }
-
-        [Pure]
+        
         public static string StripDiacritics(this string s)
         {
             if (s == null) throw new ArgumentNullException("s");
