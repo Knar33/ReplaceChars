@@ -47,7 +47,7 @@ namespace ReplaceChars
         
         public static string StripDiacritics(this string InputString)
         {
-            if (InputString == null) throw new ArgumentNullException("s");
+            if (InputString == null) return null;
 
             InputString = InputString.Normalize(NormalizationForm.FormD);
             StringBuilder outputString = new StringBuilder(InputString.Length);
